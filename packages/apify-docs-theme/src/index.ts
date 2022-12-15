@@ -7,5 +7,11 @@ export default function theme(context, opts) {
         getTypeScriptThemePath() {
             return '../src/theme';
         },
+        async contentLoaded({ content, actions }) {
+            const { setGlobalData } = actions;
+            setGlobalData({
+                opts,
+            });
+        },
     };
 }

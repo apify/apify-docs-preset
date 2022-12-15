@@ -1,5 +1,7 @@
 import React from 'react';
 import { useThemeConfig } from '@docusaurus/theme-common';
+import { usePluginData } from '@docusaurus/useGlobalData';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import {
     splitNavbarItems,
 } from '@docusaurus/theme-common/internal';
@@ -33,30 +35,61 @@ function NavbarContentLayout({
     );
 }
 
+function SubNavbar() {
+    const { subNavbar } = usePluginData('@apify/docs-theme').opts;
+    const pageTitle = useDocusaurusContext().siteConfig.title;
+    return (
+        subNavbar ? (
+            <div className="navbar__inner">
+                <div className="navbar__items">
+                    <NavbarItems items={[
+                        {
+                            label: pageTitle,
+                            to: '/',
+                        },
+                        ...subNavbar,
+                    ]}/>
+                </div>
+            </div>
+        ): null
+    )
+}
+
 export default function NavbarContent() {
     const items = useThemeConfig().navbar.items;
     const [leftItems, rightItems] = splitNavbarItems(items);
     const searchBarItem = items.find((item) => item.type === 'search');
     return (
-        <NavbarContentLayout
-            left={
-                <>
-                    <NavbarMobileSidebarToggle/>
-                    <NavbarLogo/>
-                    <NavbarItems items={leftItems}/>
-                </>
-            }
-            right={
-                <>
-                    <NavbarColorModeToggle className={styles.colorModeToggle}/>
-                    <NavbarItems items={rightItems}/>
-                    {!searchBarItem && (
-                        <NavbarSearch>
-                            <SearchBar/>
-                        </NavbarSearch>
-                    )}
-                </>
-            }
-        />
+        <div
+            style={{
+                width: "100%",
+                height: "100%",
+                alignItems: "center",
+                display: "flex",
+                flexDirection: "column",
+            }}    
+        >
+            <NavbarContentLayout
+                left={
+                    <>
+                        <NavbarMobileSidebarToggle/>
+                        <NavbarLogo/>
+                        <NavbarItems items={leftItems}/>
+                    </>
+                }
+                right={
+                    <>
+                        <NavbarColorModeToggle className={styles.colorModeToggle}/>
+                        <NavbarItems items={rightItems}/>
+                        {!searchBarItem && (
+                            <NavbarSearch>
+                                <SearchBar/>
+                            </NavbarSearch>
+                        )}
+                    </>
+                }
+            />
+            <SubNavbar/>
+        </div>
     );
 }
