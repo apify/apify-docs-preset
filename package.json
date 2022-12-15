@@ -1,0 +1,23 @@
+{
+  "name": "@apify/docs-presets",
+  "workspaces": [
+    "packages/apify-docs-theme",
+    "packages/apify-docs-preset"
+  ],
+  "version": "1.0.0",
+  "description": "A bundle of common presets for Apify Docusaurus docs",
+  "main": "index.js",
+  "scripts": {
+    "build": "turbo run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "copyfiles": "^2.4.1",
+    "rimraf": "^3.0.2",
+    "turbo": "^1.6.3",
+    "typescript": "^4.9.3"
+  }
+}

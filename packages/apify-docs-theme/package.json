@@ -1,0 +1,18 @@
+{
+  "name": "@apify/docs-theme",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rimraf ./dist && tsc && npm run copyStyles && npm run copyImages",
+    "copyStyles": "rsync -a -m --include '*/' --include '*.css' --exclude '*' ./src/theme/ ./dist/theme",
+    "copyImages": "cp -r src/img ./dist/img"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@docusaurus/theme-common": "^2.2.0"
+  }
+}

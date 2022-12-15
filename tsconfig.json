@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "target": "ES2020",
+        "module": "commonjs",
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "strict": false,
+        "declaration": true,
+        "moduleResolution": "node",
+        "allowSyntheticDefaultImports": true,
+        "baseUrl": ".",
+        "paths": {
+            "@apify/docs-preset": ["packages/apify-docs-preset"],
+            "@apify/docs-theme": ["packages/apify-docs-theme"],
+        }
+    },
+}
